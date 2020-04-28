@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/29a00776d0.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        body{
+            padding:0;
+            margin:0; 
+        }
+        .header{
+            color:white;
+            height:100vh;
+            width:100vw;
+            background-image: url('e.jpg');
+            background-size:100% 100% ;
+        }
+        .section{
+           height:99vh;
+           width:89vw;
+            position:absolute;
+            background:rgb(32, 33, 34, .5);
+            border:1px solid blue;
+            left:10vw;
+            top:0vh;
+            display: none;
+        }
+        .menu{
+            cursor:pointer;
+            font-family:sans-serif;
+            background-image: linear-gradient(to bottom left, red, blue 70%, black);
+            width:8vw;
+            padding:10px;
+            border:2px solid rgb(133, 164, 206);
+            color:white;
+            font-size: 1.3em;
+        }
+        .menu:hover{
+            background-image: linear-gradient(to top right, red, blue 70%, black); 
+        }
+        .nav-bar{
+            background-image: linear-gradient(to bottom left, red, blue 70%, black);
+            color:white;
+            font-size: 1.3em;
+            width:7vw;
+            list-style: none;
+            border:3px solid rgb(133, 164, 206);
+            padding:5px 17px;
+            line-height: 2em;
+        }
+        .nav-bar li{
+            border-bottom: 1px dashed silver;
+            /* background: transparent; */
+            cursor:pointer;
+        }
+        .nav-bar li:hover{
+            transform: scale(1.1);
+            transition:all .5s;
+            border-bottom: 1px solid silver;
+            color:silver;
+        }
+        #clock{
+            position:absolute;
+            left:38%;
+            top:5%;
+            width:30vw;
+            height:20vh;
+            text-align: center;
+            z-index: 5;
+
+        }
+        .time{
+            font-size: 3em;
+            font-family:'Raleway' cursive ;
+            line-height: 1em;
+            color:white;
+            font-weight:bolder;
+            text-shadow:2px 2px 2px silver;
+        }
+        .date{
+            font-size: 2.5em;
+            font-family:'Raleway Dots';
+            line-height: 2em;
+            color:rgb(165, 37, 37);
+            font-weight:bolder;
+            text-shadow:2px 2px 2px black;
+        }
+        .trans{
+            transition:all .5s;
+        }
+        .translate{
+            display:block;
+            animation:translate 1s linear;
+        }
+        @keyframes translate{
+            0%{
+                left:90vw;
+            }
+            100%{
+                left:10vw;
+            }
+        }
+        .slider{
+            position:absolute;
+            display: flex;
+            justify-content: space-between;
+            padding:5vh;
+            box-sizing: border-box;
+            height:100%;
+            width:100%;
+        }
+        .slider-button{
+            background-image: linear-gradient(to top right, red, blue 70%, black); 
+            color: white;
+            padding:5px 10px;
+            font-size: 1.2em;
+        }
+        .slider h1{
+        letter-spacing: 2px;
+        font-size: 2.5em;
+        text-transform: capitalize;
+        font-family:sans-serif;
+        text-shadow:2px 2px 5px rgb(133, 164, 206);
+        }
+        .boxes{
+            position:absolute;
+            width:95%;
+            height:70%;
+            top:25%;
+            display:flex;
+            justify-content: space-around;
+        }
+        .box{
+            height:90%;
+            width:25%;
+            background-image:url('one.gif');
+            background-size: 100% 100%;
+            position:relative;
+            border-radius:20px;
+            z-index:5;
+            animation-delay:.5s;
+            animation:left 2s linear forwards;
+        }
+        @keyframes left{
+        from{
+            left:100%;filter: blur(10px);
+        }
+        to{
+            left:0;
+        }
+        }
+        .after{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgb(106, 90, 205, .5);
+        border-radius:20px;
+        z-index:1;
+        display:grid;
+        justify-items: center;
+        grid-template-rows: 45% 20% 10%;
+        grid-gap: 5%;
+        align-content: center;
+        }
+        .after:hover{
+        transition: all .5s;
+        box-shadow: 4px 4px 5px white;
+        top:10%;
+        left:12%;
+        width:95%;
+        height:95%;
+        }
+        .after img{
+        width:80%;
+        height:100%;
+        border-radius:20px;
+        }
+        .after:hover img{
+            border:2px solid rgb(255, 0, 157);
+        }
+        .after p{
+            font-family:Arial, Helvetica, sans-serif;
+            text-align: center;
+            font-size: 1em;
+            line-height: 1.5em;
+        }
+        .after button{
+            padding:10px 15px;
+            font-size: 1.2em;
+            background:white;
+            color:blue;
+        }
+        .after:hover button{
+            background-image: linear-gradient(to top right, red, blue 70%, black); 
+            color:white;   
+        }
+        .boxes2, .boxes22{
+            position:absolute;
+            width:95%;
+            display:flex;
+            justify-content: space-evenly;
+        }
+        .boxes2{
+            top:25%;
+            height:35%;
+            animation-delay:.5s;
+            animation:top 1s linear forwards;
+        }
+        @keyframes top{
+        from{
+            top:42%;filter: blur(10px);
+        }
+        to{
+            top:30%;transform: skewx(15deg);
+        }
+        }
+        .boxes22{
+            top:60%;
+            animation-delay:.5s;
+            animation:bottom 1s linear forwards;
+            height:35%;
+        }
+        @keyframes bottom{
+        from{
+            top:42%;filter: blur(10px);
+        }
+        to{
+            top:60%;transform: skewx(-15deg);
+        }
+        }
+        .box2{
+            background-image: radial-gradient(rgb(255, 0, 0, .5), rgb(0, 0, 255, .5), rgb(0, 0, 0, .5));
+            height:90%;
+            width:30%;
+            border-radius:20px;
+            border:2px solid white;
+            padding:1% 2%;
+            box-sizing: border-box;
+        }
+        .box22{
+            border-top:2px solid transparent;
+        }
+        .box2 h3{
+            font-weight: lighter;
+            line-height: 1.2em;
+        }
+        .box22{
+            background-image: url('ccc.jfif');
+            background-size: 100% 100%;
+        }
+        .box2 button{
+            color:blue;
+            background: white;
+            padding:10px 15px;
+        }
+        .box2 button:hover{
+            animation:blurr .7s linear;
+        }
+@keyframes blurr{   
+    0%{
+     filter: blur(10px);
+     box-shadow: 2px 2px 4px rebeccapurple;
+    }    
+    100%{
+    color:white;
+    background-image: radial-gradient(rgb(255, 0, 0, .5), rgb(0, 0, 255, .5), rgb(0, 0, 0, .5));
+        }
+}
+.btn-sliders{
+    position:absolute;
+    width:95%;
+    height:70%;
+    top:25%;
+     overflow: hidden;
+     background-image: radial-gradient(rgb(255, 0, 0, .5), rgb(0, 0, 255, .5), rgb(0, 0, 0, .5));
+}
+.btn-slider{
+    position:absolute;
+    width:95%;
+    height:70%;
+    top:25%;
+     overflow: hidden;
+     animation:change 1s linear infinite;
+        }
+@keyframes change{
+0%{
+    background-image: linear-gradient(to bottom left, rgb(255, 0, 0, .5)20%, rgb(0, 0, 255, .5) , rgb(0, 0, 0, .5)) ;
+}
+25%{
+    background-image:linear-gradient(to bottom left, rgb(0, 0, 0, .5)20%, rgb(255, 0, 0, .5) , rgb(0, 0, 255, .5)) ;
+}
+50%{
+    background-image: linear-gradient(to bottom left, rgb(0, 0, 255, .5)20%, rgb(0, 0, 0, .5) , rgb(255, 0, 0, .5)) ;
+}
+75%{
+    background-image:linear-gradient(to bottom left, rgb(255, 0, 0, .5)20%, rgb(0, 0, 255, .5) , rgb(0, 0, 0, .5)) ;
+}
+100%{
+    background-image:linear-gradient(to bottom left,  rgb(0, 0, 0, .5)20%, rgb(255, 0, 0, .5) , rgb(0, 0, 255, .5)) ;
+}
+}        
+.page{
+position:absolute;
+height:100%;
+width:100%;
+right:100%;
+}
+.page1{
+    background-image:url('bbb.jpg');
+    background-size: 100% 100%;
+}
+.page2{
+    background-image:url('ccc.jpg');
+    background-size: 100% 100%;
+}
+.slide-btn{
+position: absolute;
+z-index:5;
+width:7vh;
+height:7vh;
+border:none;
+top:45%;
+background-image: radial-gradient(rgb(255, 0, 0, .8), rgb(0, 0, 255, .9) 80%, rgb(0, 0, 0, .5) 150%);
+}
+.right{
+    right:0;
+}
+.sl{
+    animation:slides 1s linear forwards;   
+}
+@keyframes  slides{
+0%{
+    right:100%;filter:grayscale(100%);
+} 
+99%{
+    filter:grayscale(100%);
+}
+100%{
+    right:0%;
+}
+}
+.boxes3{
+            position:absolute;
+            width:95%;
+            height:70%;
+            top:25%;
+            display:grid;
+        }
+.ones{
+    width:20%;
+   background: transparent;
+    color:blue;
+    font-size:1.2em;
+    box-shadow: 2px 2px 7px 2px rgb(165, 37, 37);
+    height:8vh;
+    border: none;
+}
+.ones:hover{
+    box-shadow: 2px 2px 7px 2px rgb(0, 0, 255, .7);
+    color:rgb(165, 37, 37);
+}
+.open img{
+    height:50vh;
+    width:100%;
+}
+.open:hover{
+    background-image: linear-gradient(to top right, rgb(255, 0, 0, .7), rgb(0, 0, 255, .7) , rgb(0, 0, 0, .8)120%);
+}
+
+.open{
+    position:absolute;
+    left:25%;
+    box-sizing: border-box;
+    font-size:1em;
+    width:70%;
+    color:white;
+    text-align: center;
+    max-height:0;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(to top left, rgb(255, 0, 0, .7), rgb(0, 0, 255, .7) , rgb(0, 0, 0, .8)120%);
+   background-size:100% 100%;
+   transition:all .5s;
+}
+.btns-slider{
+    position:absolute;
+    width:95%;
+    height:70%;
+    top:25%;
+    background-image: linear-gradient(to top left, rgb(255, 0, 0, .5)20%, rgb(0, 0, 255, .5) , rgb(0, 0, 0, .5));
+     overflow: hidden;
+     display:flex;
+     justify-content: space-evenly;
+} 
+.simple{
+    position:absolute;
+    width:95%;
+    height:70%;
+    top:25%;
+    background-image: linear-gradient(to top left, rgb(0, 0, 0, .5), rgb(0, 0, 255, .5) , rgb(0, 0, 0, .5));
+     overflow: hidden;
+     display:flex;
+     justify-content: space-evenly;
+     flex-wrap: wrap;
+} 
+.simples{
+    position:absolute;
+    width:95%;
+    height:70%;
+    background-image: radial-gradient(rgb(255, 0, 0, .8), rgb(0, 0, 255, .9) 80%, rgb(0, 0, 0, .5) 150%);
+    top:25%;
+     overflow: hidden;
+     display:flex;
+     justify-content: space-evenly;
+     flex-wrap: wrap;
+} 
+.key{
+    width:3%;
+    font-size: 2em;
+    border:2px solid silver;
+    background: #404196;
+    text-align: center;
+}
+.key:hover{
+    box-shadow: 2px 2px 8px 2px white;
+    background: rgb(64, 65, 150, .6);
+}
+.keys{
+    transform: scale(.95);
+    transition: all .5s;
+    background-image: linear-gradient(to bottom right, rgb(255, 0, 0, .7), rgb(0, 0, 255, .7) , rgb(0, 0, 0, .8)90%);
+}
+.container{
+    position: absolute;
+    height:90%;
+    width:70%;
+    left:25%;
+    top:5%;
+    background: rgb(56, 60, 65, .5);
+    transition: all .5s;
+    transform: skewx(var(--rotate));
+}
+.img{
+    position:absolute;
+     background-size: 100% 100%;
+     height:100%;
+    width:100%;
+    transition:all .5s;
+    transform:scale(.2);
+    z-index:0;
+    padding:10%;
+    box-sizing: border-box;
+    padding:var(--spacing) 0;
+    border:var(--spacing) dotted var(--base);
+    border-radius:var(--radius);    
+    filter:blur(var(--blur));
+}
+.img h1{
+color:rgb(131, 33, 58);
+background: white;
+width:23%;
+font-size: 2em;
+text-align: center;
+}
+ .animate{
+    transform:scale(1);
+    z-index: 1;
+    opacity:1;
+}
+:root{
+            --base:red;
+            --spacing:px;
+            --blur:px;
+            --bor:px;
+            --radius:%;
+            --rotate:deg;
+        }
+        .controls{
+            height:100%;
+            padding:2% 5%;
+            box-sizing: border-box;
+            width:25%;
+            display:grid;
+            font-size: 1em;
+            grid-template-rows:5(1fr, auto);
+        } 
+        .controls input{
+            width:50%;
+            background: linear-gradient(Purple, goldenrod);
+        }
+        .controls label{
+            height:70px;
+            color:white;
+            font-size: 1.5em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .box444{
+            position: relative;
+            height:100%;
+            width:100%;
+            display: flex;
+        }
+        .box4{
+            position:absolute;
+            height:96%;
+            top:2%;
+            width:23%;
+            left:1%;
+            background: rgb(91, 91, 207);
+            transition: all 1s;
+            border: 1px solid white;
+            text-align: center;
+            opacity: 0;
+        }
+        .box4 img{
+            transform:scale(1.1);
+            border-top:10px solid white;
+        }
+        .box4 h2{
+            color:rgb(165, 37, 37);
+            background: white;
+        }
+        .box4 p{
+            color:black;
+            line-height: 1.5em;
+            background: white;
+            padding: 5% 0;
+        }
+        .box444:hover{
+            background: transparent;
+        }
+        .box444:hover .box41{
+            box-shadow: 2px 2px 7px 2px white;  
+            opacity: 1;      
+        }
+        .box444:hover .box42{
+            left:26%;
+            box-shadow: 2px 2px 7px 2px white;
+            opacity: 1;
+        }
+        .box444:hover .box43{
+            left:51%;
+            box-shadow: 2px 2px 7px 2px white;
+            opacity: 1;
+        }
+        .box444:hover .box44{
+            left:76%;
+            box-shadow: 2px 2px 7px 2px white;
+            opacity: 1;
+        }
+.chr{
+    cursor: pointer;
+    height:6vh;
+    width:8vh;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    font-weight: bolder;
+    margin:2vh;
+    background-image:linear-gradient(to bottom right, rgb(255, 0, 0, .4), rgb(0, 0, 255, .4),rgb(255, 175, 1)120%) ;
+} 
+.chr:hover{
+    box-shadow: 2px 2px 5px silver;
+}     
+.text{
+    height:9vh;
+    font-size: 1.1em;
+    line-height: 4em;
+    text-shadow: 2px 2px 5px rgb(255, 0, 55);
+    box-sizing: border-box;
+    border-bottom: 8px solid rgb(209, 25, 65);
+    opacity:0;
+    transition: all .5s;
+}
+.text:hover{
+    opacity:1;
+} 
+.image{
+    position: relative;
+    margin-top:.5%;
+    height:48%;
+    width:24.5%;
+    overflow: hidden;
+    background-size:100% 100%;
+
+}
+.image1{
+    background-image:url('im1.jfif');
+}
+.image2{
+    background-image:url('im2.jfif');
+}
+.image3{
+    background-image:url('im3.jfif');
+}
+.image4{
+    background-image:url('im4.jfif');
+}
+.image5{
+    background-image:url('im5.jfif');
+}
+.image6{
+    background-image:url('im6.jfif');
+}
+.image7{
+    background-image:url('im7.jfif');
+}
+.image8{
+    background-image:url('im8.jfif');
+}
+.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:200%;
+    transition:all 1s;
+}
+.back img{
+    width:100%;
+    height:100%;
+}
+.image:hover .back{
+    left:0%;
+    z-index: 1;
+}
+.clip{
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 1.5vh;
+    position: relative;
+    height:30vh;
+    width:25%;
+    border:2px solid silver;
+}
+.afters{
+    border-radius: 10px;
+    position: absolute;
+    height:100%;
+    width:100%;
+    background-image: linear-gradient(to bottom left, red, blue 70%, black);
+    clip-path: circle(50% at 100% 0);
+    transition: all 1s;
+}
+.clip:hover .afters{
+    clip-path: circle(141.2% at 100% 0);
+}
+.afters h2{
+    margin-top:7%;
+    margin-left:70%;
+}
+.afters p{
+    padding: 5%;
+}
+.arrange{
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns: 45% 45%;
+    grid-template-rows: 45% 45%;
+    justify-content: center;
+    grid-gap:3%;
+    align-content: center;
+}
+.arra{
+    background: rgb(207, 207, 207);
+    background:rgb(28, 28, 29) ;
+    border: 1px solid blue;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+.arra button{
+    height:100%;
+    width:10%;
+    color:white;
+    font-size: 1.1em;
+    border: none;
+    background-image: linear-gradient(to bottom left, red, blue 70%, black);
+}
+.center{
+    width:0%;
+    height:100%;
+    background: rgb(207, 207, 207);
+    overflow: hidden;
+    display: grid;
+    justify-content: center;
+    /* align-items: center; */
+    box-sizing: border-box;
+}
+.center h2{
+    font-family:sans-serif;
+    color:rgb(165, 37, 37);
+    font-weight:bolder;
+    text-shadow:2px 2px 2px black;
+    text-transform: capitalize;
+}
+.center p{
+    font-family:sans-serif;
+    color:blue;
+    margin-top:-3.5vh;
+    text-shadow:1px 1px 1px black;
+}
+.creates{
+    
+    height:auto;
+    width:auto;
+}
+.contains{
+    height:auto;
+    width:340px;
+    margin:3% auto;
+    background: silver;
+    border-radius: 25px;
+    padding:30px 30px;
+    box-sizing: border-box;
+    box-shadow:1px 1px 2px 2px grey;
+}
+#cal{
+    margin-bottom:30px;
+    padding:0 10px;
+    height:55px;
+    width:260px;
+    background: slategrey;
+    color:white;
+    border-radius: 10px;
+    font-size: 30px;
+}
+#screen:focus{
+    outline:none;
+}
+.press{
+    width:280px;
+}
+.press input{
+    background: slategrey;
+color:white;
+width:50px;
+ height:50px;
+ margin:5px 7.5px;
+ border-radius: 5px;
+ outline:none;
+ text-align: center;
+ font-size: 18px;
+}
+::placeholder{
+    color:black;
+}
+#clear{
+    background:red;
+}
+#equal{
+    width:120px;
+    background:navy;
+}
+#minus, #plus, #divide, #multiply{
+    background:navy;
+}
+.fab{
+    padding:0 7px;
+    font-size: .8em;
+}
+.twi{
+color:rgb(109, 109, 204);
+    border-radius: 50%;
+}
+.you{
+    color:red;
+}
+.insta{
+    color:rgb(231, 179, 37);
+}
+.gog{
+    color:rgb(255, 81, 0);
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+    <div class="menu">Menu &nbsp; &nbsp; &nbsp;  <i class="fas fa-bars"></i></div>
+    <div class="nav-bar">
+      <li class="one">Translate</li>
+      <div class="section">
+      <div class="slider">
+        <h1>Translate</h1>
+        <a href="document.html"><button class="slider-button">close</button></a>
+        <div class="boxes">
+            <div class="box">
+            <div class="after">
+            <img src="tt2-1.jpg" >
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, expedita!</p>
+           <button onclick="sound()" class="sbt1">Sounds</button>
+            </div>
+        </div>
+        <div class="box">
+            <div class="after">
+                <img src="post3-1-360x320.jpg">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, expedita!</p>
+            <button onclick="sound()" class="sbt1">Sounds</button>
+            </div>
+        </div>
+        <div class="box">
+            <div class="after">
+                <img src="post4-1-360x320.jpg">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, expedita!</p>
+           <button onclick="sound()" class="sbt1">Sounds</button>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      <li class="one">Skew</li>
+      <div class="section">
+      <div class="slider">
+        <h1>Skew animation</h1>
+        <a href="document.html"><button class="slider-button">close</button></a>
+        <div class="boxes2">
+            <div class="box2">
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, expedita!</h3>
+           <button>Read More</button>
+        </div>
+        <div class="box2">
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, expedita!</h3>
+           <button>Read More</button>
+        </div>
+        <div class="box2">
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, expedita!</h3>
+            <button>Read More</button>
+        </div>
+        </div>        
+        <div class="boxes22">
+        <div class="box2 box22">
+        </div>
+        <div class="box2 box22">
+        </div>
+        <div class="box2 box22">
+        </div>
+        </div>
+        </div>
+        </div>
+      <li class="one">Slider</li>
+      <div class="section">
+        <div class="slider">
+            <h1>Button Slider </h1>
+            <a href="document.html"><button class="slider-button">close</button></a>
+            <div class="btn-sliders">
+       <div class="page page1"></div> 
+       <div class="page page2"></div>
+       <button class="slide-btn left" onclick="move()"></button>
+       <button class="slide-btn right" onclick="move()"></button>
+       </div>
+            </div>
+      </div> 
+      <li class="one">Scroll</li>
+      <div class="section">
+        <div class="slider">
+            <h1>scroll Height</h1>
+            <a href="document.html"><button class="slider-button">close</button></a>
+            <div class="boxes3">
+    <button class="ones" type="button">click to open</button>
+    <p class="open">Lorem ipsum dolor sit amet consectetur
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, repellat?
+    <img src="e.png" alt=""></p>
+    <button class="ones" type="button">click to open</button>
+    <p class="open">Lorem ipsum dolor sit amet consectetur 
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, repellat?
+    <img src="bbb.jpg" alt=""></p>
+    <button class="ones" type="button">click to open</button>
+    <p class="open">Lorem ipsum dolor sit amet consectetur 
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, repellat?
+    <img src="ddd.jpg" alt=""></p>
+    <button class="ones" type="button">click to open</button>
+    <p class="open">Lorem ipsum dolor sit amet consectetur 
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, repellat?
+    <img src="eee.jpg" alt=""></p>
+    <button class="ones" type="button">click to open</button>
+    <p class="open">Lorem ipsum dolor sit amet consectetur 
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, repellat?
+    <img src="ccc.jpg" alt=""></p>
+    <button class="ones" type="button">click to open</button>
+    <p class="open">Lorem ipsum dolor sit amet consectetur 
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, repellat?
+    <img src="e.jpg" alt=""></p>
+
+            </div>
+            </div>
+      </div> 
+      <li class="one">Press</li>
+      <div class="section">
+        <div class="slider">
+            <h1>Press Keys</h1>
+            <a href="document.html"><button class="slider-button">close</button></a>
+            <div class="btns-slider">
+                <div data-key="65" class="key">
+        <kbd>A</kbd>
+    </div>
+    <div data-key="66" class="key">
+        <kbd>B</kbd>
+    </div>
+    <div data-key="67" class="key">
+        <kbd>C</kbd>
+    </div>
+    <div data-key="68" class="key">
+        <kbd>D</kbd>
+    </div>
+    <div data-key="69" class="key">
+        <kbd>E</kbd>
+    </div>
+    <div data-key="70" class="key">
+        <kbd>F</kbd>
+    </div>
+    <div data-key="71" class="key">
+        <kbd>G</kbd>
+    </div>
+    <div data-key="72" class="key">
+        <kbd>H</kbd>
+    </div>
+    <div data-key="73" class="key">
+        <kbd>I</kbd>
+    </div>
+    <div data-key="74" class="key">
+        <kbd>J</kbd>
+    </div>
+    <div data-key="75" class="key">
+        <kbd>K</kbd>
+    </div>
+    <div data-key="76" class="key">
+        <kbd>L</kbd>
+    </div>
+    <div data-key="77" class="key">
+        <kbd>M</kbd>
+    </div>
+    <div data-key="78" class="key">
+        <kbd>N</kbd>
+    </div>
+    <div data-key="79" class="key">
+        <kbd>O</kbd>
+    </div>
+    <div data-key="80" class="key">
+        <kbd>P</kbd>
+    </div>
+    <div data-key="81" class="key">
+        <kbd>Q</kbd>
+    </div>
+    <div data-key="82" class="key">
+        <kbd>R</kbd>
+    </div>
+    <div data-key="83" class="key">
+        <kbd>S</kbd>
+    </div>
+    <div data-key="84" class="key">
+        <kbd>T</kbd>
+    </div>
+    <div data-key="85" class="key">
+        <kbd>U</kbd>
+    </div>
+    <div data-key="86" class="key">
+        <kbd>V</kbd>
+    </div>
+    <div data-key="87" class="key">
+        <kbd>W</kbd>
+    </div>
+    <div data-key="88" class="key">
+        <kbd>X</kbd>
+    </div>
+    <div data-key="89" class="key">
+        <kbd>Y</kbd>
+    </div>
+    <div data-key="90" class="key">
+        <kbd>Z</kbd>
+    </div>
+    
+       </div>
+            </div>
+      </div> 
+      <li class="one">Inputs</li>
+      <div class="section">
+        <div class="slider">
+            <h1>Input Changes</h1>
+            <a href="document.html"><button class="slider-button">close</button></a>
+            <div class="btn-slider">
+                <div class="controls">
+            <label for="spacing">spacing:</label>
+           <input type="range" name="spacing" id="spacing" min="5" max="10" value="5" data-sizing="px">
+           <label for="blur">blur:</label>
+           <input type="range" name="blur" id="blur" min="0" max="20" value="0" data-sizing="px">  
+           <label for="rotate">rotate:</label>
+           <input type="range" name="rotate" id="rotate" min="0" max="360" value="5" data-sizing="deg">  
+           <label for="radius">radius:</label>
+           <input type="range" name="radius" id="radius" min="0" max="100" value="5" data-sizing="%"> 
+           <label for="base">base color</label>
+           <input type="color" name="base" id="base" value="#ffc600">
+         </div>
+         <div class="container">
+            <div class="img">
+                <h1>slide-1</h1>
+            </div>
+            <div class="img">
+                <h1>slide-2</h1>
+            </div>
+            <div class="img">
+                <h1>slide-3</h1>
+            </div>
+            <div class="img">
+                <h1>slide-4</h1>
+            </div>
+            <div class="img">
+                <h1>slide-5</h1>
+            </div>
+       </div>
+            </div>
+      </div> 
+    </div> 
+      <li class="one">Hover</li>
+      <div class="section">
+          <div class="slider">
+        <h1>On Hover</h1>
+        <a href="document.html"><button class="slider-button">close</button></a>
+        <div class="btn-slider">
+        <div class="box444">
+        <div class="box4 box41">
+            <h2>Software-1</h2>
+            <img src="sof.jfif" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae qui cumque itaque, iure expedita incidunt cupiditate? Nobis velit molestiae reiciendis?</p>
+        </div>
+        <div class="box4 box42">
+            <h2>Software-2</h2>
+            <img src="sof4.jfif" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae qui cumque itaque, iure expedita incidunt cupiditate? Nobis velit molestiae reiciendis?</p>
+        
+        </div>
+        <div class="box4 box43">
+            <h2>Software-3</h2>
+            <img src="sof2.jfif" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae qui cumque itaque, iure expedita incidunt cupiditate? Nobis velit molestiae reiciendis?</p>
+        
+        </div>
+        <div class="box4 box44">
+            <h2>Software-4</h2>
+            <img src="sof3.jfif" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae qui cumque itaque, iure expedita incidunt cupiditate? Nobis velit molestiae reiciendis?</p>
+        
+        </div>
+            </div>
+        </div>
+    </div>
+            </div>
+      <li class="one">Click</li>
+      <div class="section">
+          <div class="slider">
+            <h1>On Click</h1>
+            <a href="document.html"><button class="slider-button">close</button></a>
+              <div class="simple">
+                <div data-key="65" class="chr">A</div>
+                <div class="text">Apple</div>
+                <div data-chr="66" class="chr">B</div>
+                <div class="text">Ball</div>
+                <div data-chr="67" class="chr">C</div>
+                <div class="text">Cat</div>
+                <div data-chr="68" class="chr">D</div>
+                <div class="text">Dog</div>
+                <div data-chr="69" class="chr">E</div>
+                <div class="text">Egg</div>
+                <div data-chr="70" class="chr">F</div>
+                <div class="text">Fish</div>
+                <div data-chr="71" class="chr">G</div>
+                <div class="text">Grass</div>
+                <div data-chr="72" class="chr">H</div>
+                <div class="text">Horse</div>
+                <div data-chr="73" class="chr">I</div>
+                <div class="text">Ink</div>
+                <div data-chr="74" class="chr">J</div>
+                <div class="text">Juice</div>
+                <div data-chr="75" class="chr">K</div>
+                <div class="text">Kite</div>
+                <div data-chr="76" class="chr">L</div>
+                <div class="text">Lion</div>
+                <div data-chr="77" class="chr">M</div>
+                <div class="text">Monkey</div>
+                <div data-chr="78" class="chr">N</div>
+                <div class="text">Nest</div>
+                <div data-chr="79" class="chr">O</div>
+                <div class="text">Orange</div>
+                <div data-chr="80" class="chr">P</div>
+                <div class="text">Parrot</div>
+                <div data-chr="81" class="chr">Q</div>
+                <div class="text">Queen</div>
+                <div data-chr="82" class="chr">R</div>
+                <div class="text">Rat</div>
+                <div data-chr="83" class="chr">S</div>
+                <div class="text">Sun</div>
+                <div data-chr="84" class="chr">T</div>
+                <div class="text">Tiger</div>
+                <div data-chr="85" class="chr">U</div>
+                <div class="text">Umbrella</div>
+                <div data-chr="86" class="chr">V</div>
+                <div class="text">van</div>
+                <div data-chr="87" class="chr">W</div>
+                <div class="text">Watch</div>
+                <div data-chr="88" class="chr">X</div>
+                <div class="text">x-ray</div>
+                <div data-chr="89" class="chr">Y</div>
+                <div class="text">yolk</div>
+                <div data-chr="90" class="chr">Z</div>
+                <div class="text">Zebra</div>
+                <div data-chr="81" class="chr">1</div>
+                <div class="text">One</div>
+                <div data-chr="82" class="chr">2</div>
+                <div class="text">Two</div>
+                <div data-chr="83" class="chr">3</div>
+                <div class="text">Three</div>
+                <div data-chr="84" class="chr">4</div>
+                <div class="text">Four</div>
+                <div data-chr="85" class="chr">5</div>
+                <div class="text">Five</div>
+                <div data-chr="86" class="chr">6</div>
+                <div class="text">Six</div>
+                <div data-chr="87" class="chr">7</div>
+                <div class="text">Seven</div>
+                <div data-chr="88" class="chr">8</div>
+                <div class="text">Eight</div>
+                <div data-chr="89" class="chr">9</div>
+                <div class="text">Nine</div>
+                <div data-chr="90" class="chr">10</div>
+                <div class="text">Ten</div>
+              </div>
+          </div>
+      </div> 
+      <li class="one">Gallery</li>
+      <div class="section">
+        <div class="slider">
+          <h1>Gallery</h1>
+          <a href="document.html"><button class="slider-button">close</button></a>
+            <div class="simples">
+                <div  class="image image1">
+                    <div class="back"><img src="im9.jfif" alt=""></div>
+                </div>
+                <div  class="image image2">
+                 <div class="back"><img src="im10.jfif" alt=""></div>
+                </div>
+                <div  class="image image3">
+                    <div class="back"><img src="im11.jfif" alt=""></div>
+                </div>
+                <div  class="image image4">
+                    <div class="back"><img src="im12.jfif" alt=""></div>
+                </div>
+                <div  class="image image5">
+                    <div class="back"><img src="im13.jfif" alt=""></div>
+                </div>
+                <div  class="image image6">
+                    <div class="back"><img src="im14.jfif" alt=""></div>
+                </div>
+                <div  class="image image7">
+                    <div class="back"><img src="im15.jfif" alt=""></div>
+                </div>
+                <div  class="image image8">
+                    <div class="back"><img src="im16.jfif" alt=""></div>
+                </div>
+                </div>  
+                </div>
+                </div>
+      <li class="one">Clip Path</li>
+      <div class="section">
+      <div class="slider">
+      <h1>Clip Path</h1>
+      <a href="document.html"><button class="slider-button">close</button></a>
+    <div class="simple">
+        <div class="clip"><div class="afters">
+            <h2>Step-1</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, culpa?</p>
+        </div></div>
+        <div class="clip"><div class="afters">
+            <h2>Step-2</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, culpa?</p>
+        </div></div>
+        <div class="clip"><div class="afters">
+            <h2>Step-3</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, culpa?</p>
+        </div></div>
+        <div class="clip"><div class="afters">
+            <h2>Step-4</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, culpa?</p>
+        </div></div>
+        <div class="clip"><div class="afters">
+            <h2>Step-5</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, culpa?</p>
+        </div></div>
+        <div class="clip"><div class="afters">
+            <h2>Step-6</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, culpa?</p>
+        </div></div>
+    </div>
+      </div>
+      </div> 
+      <li class="one">Open Div</li>
+      <div class="section">
+        <div class="slider">
+        <h1>Open div</h1>
+        <a href="document.html"><button class="slider-button">close</button></a> 
+        <div class="simple">
+            <div class="arrange">
+            <div class="arra">
+                <button class="bo">O<br/>p<br/>e<br/>n</button>
+                <div class="center">
+                    <h2>first review</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit architecto fuga nam nesciunt.fuga nam nesciunt.</p>
+                </div>
+                <button class="bc">C<br/>l<br/>o<br/>s<br/>e</button>
+            </div>
+            <div class="arra">
+                <button class="bo">O<br/>p<br/>e<br/>n</button>
+                <div class="center">
+                    <h2>second review</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit architecto fuga nam nesciunt.fuga nam nesciunt.</p>
+                </div>
+                <button class="bc">C<br/>l<br/>o<br/>s<br/>e</button>
+            </div>
+            <div class="arra">
+                <button class="bo">O<br/>p<br/>e<br/>n</button>
+                <div class="center">
+                    <h2>third review</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit architecto fuga nam nesciunt.fuga nam nesciunt.</p>
+                </div>
+                <button class="bc">C<br/>l<br/>o<br/>s<br/>e</button>
+            </div>
+            <div class="arra">
+                <button class="bo">O<br/>p<br/>e<br/>n</button>
+                <div class="center">
+                    <h2>forth review</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit architecto fuga nam nesciunt.fuga nam nesciunt.</p>
+                </div>
+                <button class="bc">C<br/>l<br/>o<br/>s<br/>e</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+      <li class="one">Calculator</li>
+      <div class="section">
+        <div class="slider">
+        <h1>Calculator</h1>
+        <a href="document.html"><button class="slider-button">close</button></a> 
+        <div class="btn-slider">
+        <div class="creates">
+            <div class="contains">
+                <input id="cal"  type="text" value="0">
+                <div class="press">
+                    <input type="button" onclick="removeValue()" id="clear"  value="">
+                    <input type="button" onclick="addValue(event)" id="backspace" value="-">
+                    <input type="button"  onclick="addValue(event)" id="sign" value="A">
+                    <input type="button" onclick="addValue(event)" id="divide" value="/" >
+                    <input type="button" onclick="addValue(event)" class="num" value="7">
+                    <input type="button" onclick="addValue(event)" class="num" value="8">
+                    <input type="button" onclick="addValue(event)" class="num" value="9">
+                    <input type="button" onclick="addValue(event)" id="multiply" value="*">
+                    <input type="button" onclick="addValue(event)" id="num" value="4">
+                    <input type="button" onclick="addValue(event)" id="num" value="5">
+                    <input type="button" onclick="addValue(event)" id="num" value="6">
+                    <input type="button" onclick="addValue(event)" id="minus" value="-">
+                    <input type="button" onclick="addValue(event)" id="num" value="1">
+                    <input type="button" onclick="addValue(event)" id="num" value="2">
+                    <input type="button" onclick="addValue(event)" id="num" value="3">
+                    <input type="button" onclick="addValue(event)" id="plus" value="+">
+                    <input type="button" onclick="addValue(event)" id="num" value="0">
+                    <input type="button" onclick="addValue(event)" id="num" value=".">
+                    <input type="button" onclick="answer(event)" id="equal" value="=">
+                </div>
+            </div>
+            
+        </div>   
+            </div>
+            </div>
+            </div> 
+            <li>Follow Us @</li> 
+            <li>google+<i class="fab fa-google-plus-g gog"></i></li> 
+      <li>Twitter<i class="fab fa-twitter twi"></i></li> 
+      <li>Instagram<i class="fab fa-instagram insta"></i></li> 
+      <li>Youtube<i class="fab fa-youtube you"></i></li> 
+    </div>
+    <div id="clock">
+        <div class="time"></div>
+        <div class="date"></div>
+    </div>
+    <audio id="audios" src="tink.wav"></audio>
+    <audio id="sound" src="1.mp3"></audio>
+    <audio id="sounds" src="zapsplat_cartoon_robot_beeps_delaye_reverb_comical_44572.mp3"></audio>
+
+
+<audio data-key="65" src="boom.wav" ></audio>
+<audio data-key="66" src="boom.wav" ></audio>
+<audio data-key="67" src="boom.wav" ></audio>
+<audio data-key="68" src="hithat.wav" ></audio>
+<audio data-key="69" src="hithat.wav" ></audio>
+<audio data-key="70" src="hithat.wav" ></audio>
+<audio data-key="71" src="kick.wav" ></audio>
+<audio data-key="72" src="kick.wav" ></audio>
+<audio data-key="73" src="kick.wav" ></audio>
+<audio data-key="74" src="openhat.wav" ></audio>
+<audio data-key="75" src="openhat.wav" ></audio>
+<audio data-key="76" src="openhat.wav" ></audio>
+<audio data-key="77" src="ride.wav" ></audio>
+<audio data-key="78" src="ride.wav" ></audio>
+<audio data-key="79" src="ride.wav" ></audio>
+<audio data-key="80" src="snare.wav" ></audio>
+<audio data-key="81" src="snare.wav" ></audio>
+<audio data-key="82" src="snare.wav" ></audio>
+<audio data-key="83" src="tink.wav" ></audio>
+<audio data-key="84" src="tink.wav" ></audio>
+<audio data-key="85" src="tink.wav" ></audio>
+<audio data-key="86" src="tom.wav" ></audio>
+<audio data-key="87" src="tom.wav" ></audio>
+<audio data-key="88" src="tom.wav" ></audio>
+<audio data-key="89" src="clap.wav" ></audio>
+<audio data-key="90" src="clap.wav" ></audio>
+</div>
+<script>
+
+    
+    var header=document.querySelector(".header")
+    var btn=document.querySelector(".menu")
+    var menu=document.querySelector(".nav-bar")
+    var sec=document.querySelector(".section")
+
+    var i=2;
+    menu.style.marginLeft="-11vw";
+    btn.onclick=function menuToggle(){
+        if(i==1){
+    btn.style.backgroundImage="linear-gradient(to bottom left, red, blue 70%, black)"
+    menu.style.marginLeft="-11vw";
+    menu.classList.add("trans");
+    audios.play();
+    i=2;
+    }
+        else{
+        btn.style.background="blue"
+        menu.style.marginLeft="0vw";
+        menu.classList.add("trans");
+        audios.play();
+            i=1;
+    }
+    }
+
+    // var btns=document.querySelectorAll(".one");  
+    // var section=document.querySelector(".section");
+    // for(g=0;g<btns.length;g++){
+    // btns[g].onclick=function (){
+    // var g;
+    //     var sec=this.nextElementSibling;
+    //     if(sec.style.display=="none"){
+            
+    //         sec.style.display="block";
+    //         sec.classList.add("translate")
+    //         section.style.display="none"
+    //         }
+    //     else{
+    //         sec.style.display="none";
+    //     }
+    // }
+    // }  
+
+    var btns=document.querySelectorAll(".one");  
+    var section=document.querySelector(".section");
+    for(g=0;g<btns.length;g++){
+    btns[g].onclick=function (){
+    var g;
+        var sec=this.nextElementSibling;
+        if(sec.style.display=="none"){
+         $(this).next().show().siblings(".section").hide()
+            sec.classList.add("translate")
+            }
+        else{
+            sec.style.display="none";
+        }
+    }
+    } 
+
+
+    setInterval(changeImg, 2000)
+    var images=document.getElementsByClassName("img")
+    var arr=["e.jpg","ccc.jpg","ccc.jpeg","e.png","bbb.jpg"]
+    var v=0;
+    var u=0;
+    function changeImg(){
+
+     if(t>=arr.length && u>=arr.length){
+     }
+     else{
+         images[u].style.backgroundImage=`url(${arr[v]})`;
+         images[u].classList.add("animate")
+     }
+     u++;
+     v++;
+    }
+
+
+        var ones=document.querySelectorAll(".ones");
+    var g;
+    for(g=0;g<ones.length;g++){
+    ones[g].onclick=function(){
+        var panel=this.nextElementSibling;
+        if(panel.style.maxHeight){
+            panel.style.maxHeight=null;
+        }
+        else{
+            panel.style.maxHeight=panel.scrollHeight +"px";
+
+        }
+    }
+    }
+  
+
+
+
+        const inputs=document.querySelectorAll(".controls input");
+        inputs.forEach(input =>
+        input.addEventListener("change", handleUpdate));
+        inputs.forEach(input =>
+        input.addEventListener("mousemove", handleUpdate))
+
+        function handleUpdate(){
+        console.log(this.value)
+        // console.log(this.dataset)
+        // console.log(this.name)
+        var suffix=this.dataset.sizing;
+        // console.log(suffix)
+        document.documentElement.style.setProperty(
+             `--${this.name}`,
+             this.value+suffix,
+        );}
+
+
+var chr=document.querySelectorAll(".chr");  
+    for(f=0;f<chr.length;f++){
+    chr[f].onclick=function (){
+    var f;
+        var text=this.nextElementSibling;
+        if(text.style.opacity=="0"){
+            text.style.opacity="1";
+        }
+        else{
+            text.style.opacity="0";
+        }
+    }
+    }  
+
+
+
+
+
+var audio=document.getElementById("sounds")
+function sound(){
+        sounds.play()
+    }
+
+var page1=document.getElementsByClassName("page1")
+var page2=document.getElementsByClassName("page2")
+var s=0;
+function move(){
+    if(s==0){
+    page1[0].classList.add("sl");
+    page2[0].classList.remove("sl");
+    s=1;
+    }
+    else if(s==1){
+        page1[0].classList.remove("sl");
+        page2[0].classList.add("sl");
+        s=0;  
+    }
+}
+
+
+
+    window.addEventListener("keydown", function(e){
+ var audi=document.querySelector(`audio[data-key="${e.keyCode}"]`);
+ var key=document.querySelector(`.key[data-key="${e.keyCode}"]`);
+ if(!audio) return;
+audi.currentTime=0;
+audi.play();
+key.classList.add("keys")
+});
+function removeTransition(e){
+if(e.propertyName !=="transform")
+return;
+this.classList.remove("keys")
+}
+var keys=document.querySelectorAll("audio");
+keys.forEach(audio => 
+audio.addEventListener("transitionend" , removeTransition));
+
+
+
+
+var chr=document.querySelectorAll(".chr");  
+    for(f=0;f<chr.length;f++){
+    chr[f].onclick=function (){
+    var f;
+        var text=this.nextElementSibling;
+        if(text.style.opacity=="0"){
+            text.style.opacity="1";
+        }
+        else{
+            text.style.opacity="0";
+        }
+    }
+    }  
+
+
+
+
+
+var bo=document.querySelectorAll(".bo");
+var bc=document.querySelectorAll(".bc");
+
+for(n=0;n<bo.length;n++){
+bo[n].onclick=function (){
+    var n=0;
+    var cen=this.nextElementSibling;
+    cen.style.width="80%";
+    cen.style.padding="0% 5%"
+    cen.classList.add('trans')
+    this.classList.add('trans')
+}
+}
+for(m=0;m<bc.length;m++){
+bc[m].onclick=function (){
+    var m=0;
+    var cen=this.previousElementSibling;
+    cen.style.width="0%";
+    cen.style.padding="0% 0%"
+    cen.classList.add('trans')
+    bo.classList.add('trans')
+}
+}
+
+var cal=document.getElementById('cal')
+function addValue(e){
+const value=cal.value;
+cal.value= value+e.target.value;
+}
+function answer(e){
+    var value=cal.value;
+    var newValue=eval(value)
+    cal.value=newValue;
+}
+function removeValue(){
+    cal.value=""
+}
+
+
+
+
+
+
+    var t=document.getElementsByClassName("time")[0]
+    var d=document.getElementsByClassName("date")[0]
+setInterval(timing, 1000)
+function timing(){
+    var date=new Date()
+    var hrs=date.getHours()
+    var min=date.getMinutes()
+    var sec=date.getSeconds()
+    var w=date.toDateString()
+    
+    if(hrs==12){
+        hrs=12;
+    }
+    if(hrs>12){
+        hrs=hrs-12;
+    }
+hrs=(hrs<10) ? "0" + hrs : hrs;
+min=(min<10) ? "0" + min : min;
+sec=(sec<10) ? "0" + sec : sec;
+
+t.innerHTML=`${hrs}:${min}:${sec}`
+d.innerHTML=`${w}`
+}  
+
+
+</script>
+</body>
+</html>
